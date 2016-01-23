@@ -1,0 +1,35 @@
+{
+  "name": "agario-stats",
+  "version": "1.0.0",
+  "description": "API mirroring agario for iphone data structure",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterbsmith2/api-a-day.git"
+  },
+  "keywords": [
+    "api",
+    "practice",
+    "data-modeling"
+  ],
+  "author": "Peter B Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peterbsmith2/api-a-day/issues"
+  },
+  "homepage": "https://github.com/peterbsmith2/api-a-day#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "compression": "^1.6.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.3.6",
+    "morgan": "^1.6.1"
+  },
+  "devDependencies": {
+    "faker": "^3.0.1"
+  }
+}
