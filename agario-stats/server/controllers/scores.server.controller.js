@@ -16,13 +16,10 @@ var getErrorMessage = function(err) {
 // Create a new controller method that creates new Scores
 exports.create = function(req, res) {
 	// Create a new Score object
-	var Score = new Score(req.body);
-
-	// Set the Score's 'creator' property
-	Score.user_id = req.user;
+	var score = new Score(req.body);
 
 	// Try saving the Score
-	Score.save(function(err) {
+	score.save(function(err) {
 		if (err) {
 			// If an error occurs send the error message
 			return res.status(400).send({
@@ -30,7 +27,7 @@ exports.create = function(req, res) {
 			});
 		} else {
 			// Send a JSON representation of the Score
-			res.json(Score);
+			res.json(score);
 		}
 	});
 };
@@ -53,39 +50,16 @@ exports.list = function(req, res) {
 
 // Create a new controller method that returns an existing Score
 exports.read = function(req, res) {
-	res.json(req.Score);
-};
-
-// Create a new controller method that updates an existing Score
-exports.update = function(req, res) {
-	// Get the Score from the 'request' object
-	var Score = req.Score;
-
-	// Update the Score fields
-	Score.title = req.body.title;
-	Score.content = req.body.content;
-
-	// Try saving the updated Score
-	Score.save(function(err) {
-		if (err) {
-			// If an error occurs send the error message
-			return res.status(400).send({
-				message: getErrorMessage(err)
-			});
-		} else {
-			// Send a JSON representation of the Score
-			res.json(Score);
-		}
-	});
+	res.json(req.score);
 };
 
 // Create a new controller method that delete an existing Score
 exports.delete = function(req, res) {
 	// Get the Score from the 'request' object
-	var Score = req.Score;
+	var score = req.score;
 
 	// Use the model 'remove' method to delete the Score
-	Score.remove(function(err) {
+	score.remove(function(err) {
 		if (err) {
 			// If an error occurs send the error message
 			return res.status(400).send({
@@ -93,35 +67,22 @@ exports.delete = function(req, res) {
 			});
 		} else {
 			// Send a JSON representation of the Score
-			res.json(Score);
+			res.json(score);
 		}
 	});
 };
 
 // Create a new controller middleware that retrieves a single existing Score
-exports.ScoreByID = function(req, res, next, id) {
+exports.scoreById = function(req, res, next, id) {
 	// Use the model 'findById' method to find a single Score
-	Score.findById(id).populate('creator', 'firstName lastName fullName').exec(function(err, Score) {
+	Score.findById(id, function(err, score) {
 		if (err) return next(err);
-		if (!Score) return next(new Error('Failed to load Score ' + id));
+		if (!score) return next(new Error('Failed to load Score ' + id));
 
 		// If an Score is found use the 'request' object to pass it to the next middleware
-		req.Score = Score;
+		req.score = score;
 
 		// Call the next middleware
 		next();
 	});
-};
-
-// Create a new controller middleware that is used to authorize an Score operation
-exports.hasAuthorization = function(req, res, next) {
-	// If the current user is not the creator of the Score send the appropriate error message
-	if (req.Score.creator.id !== req.user.id) {
-		return res.status(403).send({
-			message: 'User is not authorized'
-		});
-	}
-
-	// Call the next middleware
-	next();
 };
