@@ -26,7 +26,7 @@ module.exports = function() {
 	// Load the routing files
 	// require('../app/routes/index.server.routes.js')(app);
 	require('../server/routes/users.server.routes.js')(app);
-	// require('../app/routes/Scores.server.routes.js')(app);
+	require('../server/routes/scores.server.routes.js')(app);
 
 	// Return the App instance
 	return app;
