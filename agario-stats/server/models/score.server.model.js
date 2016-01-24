@@ -15,7 +15,8 @@ var ScoreSchema = new Schema({
   top_position: Number,
   nickname: String,
 	user_id: {
-		type: String, 
+		type: String,
+		required: true,
 		ref: 'User'
 	}
 });

@@ -30,6 +30,8 @@
     "morgan": "^1.6.1"
   },
   "devDependencies": {
-    "faker": "^3.0.1"
+    "faker": "^3.0.1",
+    "should": "^8.2.0",
+    "supertest": "^1.1.0"
   }
 }
