@@ -8,12 +8,4 @@ module.exports = function(app) {
 	app.route('/users')
 	   .get(users.list)
 	   .post(users.create);
-
-	app.route('/users/:userId')
-		 .get(users.read);
-
-	app.route('/users/:userId/scores')
-		 .get(users.scores);
-
-	app.param('userId', users.userById);
 };
