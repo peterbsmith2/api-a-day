@@ -16,13 +16,10 @@ var getErrorMessage = function(err) {
 // Create a new controller method that creates new Scores
 exports.create = function(req, res) {
 	// Create a new Score object
-	var Score = new Score(req.body);
-
-	// Set the Score's 'creator' property
-	Score.user_id = req.user;
+	var score = new Score(req.body);
 
 	// Try saving the Score
-	Score.save(function(err) {
+	score.save(function(err) {
 		if (err) {
 			// If an error occurs send the error message
 			return res.status(400).send({
@@ -38,7 +35,7 @@ exports.create = function(req, res) {
 // Create a new controller method that retrieves a list of Scores
 exports.list = function(req, res) {
 	// Use the model 'find' method to get a list of Scores
-	Score.find().sort('-created').populate('creator', 'firstName lastName fullName').exec(function(err, Scores) {
+	Score.find(function(err, Scores) {
 		if (err) {
 			// If an error occurs send the error message
 			return res.status(400).send({

@@ -4,7 +4,7 @@ var	Schema   = mongoose.Schema;
 
 // Define a new 'UserSchema'
 var UserSchema = new Schema({
-  user_id: {
+  _id: {
     type: String,
     unique: true,
     required: 'ID is required'

@@ -15,7 +15,7 @@ var ScoreSchema = new Schema({
   top_position: Number,
   nickname: String,
 	user_id: {
-		type: Schema.ObjectId,
+		type: String,
 		ref: 'User'
 	}
 });

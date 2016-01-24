@@ -1,5 +1,6 @@
 // Load the module dependencies
-var User = require('mongoose').model('User');
+var User  = require('mongoose').model('User');
+var Score = require('mongoose').model('Score');
 
 // Create a new error handling controller method
 var getErrorMessage = function(err) {
@@ -63,4 +64,34 @@ exports.list = function(req, res) {
 			res.json(Users);
 		}
 	});
+};
+
+
+exports.read = function(req, res) {
+	res.json(req.user);
+};
+
+exports.scores = function(req, res) {
+	Score.find({ user_id: req.user._id }, function(err, scores) {
+		if (err) {
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			res.json(scores);
+		}
+	});
+};
+
+exports.userById = function(req, res, next, id) {
+
+	User.findById(id, function(err, user) {
+		if (err) return next(err);
+		if (!user) return next(new Error('failed to find user ' + id));
+
+		req.user = user;
+
+		next();
+	});
+
 };
