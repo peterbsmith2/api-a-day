@@ -12,7 +12,7 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "version": "1.0",
+    "version": "1.0"
   },
   "host": "localhost",
   "basePath": "/api",
@@ -20,10 +20,9 @@
   "paths": {
     "/pushups": {
       "post": {
-        "tags": "pushups",
+        "tags": ["pushups"],
         "summary": "Add pushups for a user",
         "operationId": "addPushups",
-        "consumes": "",
         "produces": [
           "application/json",
           "application/xml"
@@ -35,7 +34,7 @@
             "description": "Pushup record.",
             "required": true,
             "schema": {
-              "$ref": "#/defintions/Pushup"
+              "$ref": "#/definitions/Pushup"
             }
           }
         ],
@@ -47,14 +46,16 @@
             "description": "forbidden"
           }
         },
-        "security": {
-          "api_key": []
-        }
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     },
     "/pushups/{id}": {
       "get": {
-        "tags": "pushups",
+        "tags": ["pushups"],
         "summary": "Get a pushups record by id",
         "operationId": "getPushup",
         "produces": [
@@ -74,19 +75,21 @@
           "200": {
             "description": "pushup got!",
             "schema": {
-              "$ref": "#/defintions/Pushup"
+              "$ref": "#/definitions/Pushup"
             }
           },
           "403": {
             "description": "forbidden"
           }
         },
-        "security": {
-          "api_key": []
-        }
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       },
       "put": {
-        "tags": "pushups",
+        "tags": ["pushups"],
         "summary": "Update a pushups record by id",
         "operationId": "putPushup",
         "produces": [
@@ -107,7 +110,7 @@
             "description": "Pushup record.",
             "required": true,
             "schema": {
-              "$ref": "#/defintions/Pushup"
+              "$ref": "#/definitions/Pushup"
             }
           }
         ],
@@ -119,14 +122,16 @@
             "description": "forbidden"
           }
         },
-        "security": {
-          "api_key": []
-        }
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     },
     "/users/{id}": {
       "get": {
-        "tags": "users",
+        "tags": ["users"],
         "summary": "get user by id",
         "operationId": "getUser",
         "produces": [
@@ -157,7 +162,7 @@
     },
     "/signup": {
       "post": {
-        "tags": "auth",
+        "tags": ["auth"],
         "summary": "create a new user",
         "operationId": "newUser",
         "produces": [
@@ -171,7 +176,7 @@
             "description": "new user to add to the system",
             "required": true,
             "schema": {
-              "$ref": "#/defintions/User"
+              "$ref": "#/definitions/User"
             }
           }
         ],
@@ -187,7 +192,7 @@
     },
     "/login": {
       "post": {
-        "tags": "auth",
+        "tags": ["auth"],
         "summary": "login as user",
         "operationId": "loginUser",
         "produces": [
@@ -196,7 +201,7 @@
         ],
         "parameters": [
           {
-            "name:": "user",
+            "name": "user",
             "in": "body",
             "description": "user to login to system",
             "required": true,
@@ -217,9 +222,9 @@
     },
     "/types": {
       "get": {
-        "tags": "types",
+        "tags": ["types"],
         "summary": "get a list of types",
-        "operationId": "getType",
+        "operationId": "getTypes",
         "produces": [
           "application/json",
           "application/xml"
@@ -230,7 +235,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/defintions/Type"
+                "$ref": "#/definitions/Type"
               }
             }
           }
@@ -239,7 +244,7 @@
     },
     "/types/{id}": {
       "get": {
-        "tags": "types",
+        "tags": ["types"],
         "summary": "get type by id",
         "operationId": "getType",
         "produces": [
@@ -275,7 +280,8 @@
           "type": "integer"
         },
         "date": {
-          "type": "date"
+          "type": "string",
+          "format": "date"
         },
         "notes": {
           "type": "string"
@@ -333,9 +339,7 @@
       }
     }
   },
-  "parameters": "",
-  "responses": "",
-  "securityDefinitons": {
+  "securityDefinitions": {
     "api_key": {
       "type": "apiKey",
       "description": "API key authorization",
@@ -343,5 +347,15 @@
       "in": "query"
     }
   },
-  "tags": "api, api-a-day, peterbsmith",
+  "tags": [
+    {
+      "name": "api"
+    },
+    {
+      "name": "api-a-day"
+    },
+    {
+      "name": "peterbsmith"
+    }
+  ]
 }
