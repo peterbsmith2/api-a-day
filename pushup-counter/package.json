@@ -1,0 +1,24 @@
+{
+  "name": "pushup-counter",
+  "version": "1.0.0",
+  "description": "A Pushup Counter API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterbsmith2/api-a-day.git"
+  },
+  "keywords": [
+    "API",
+    "pushup",
+    "counter"
+  ],
+  "author": "Peter B Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peterbsmith2/api-a-day/issues"
+  },
+  "homepage": "https://github.com/peterbsmith2/api-a-day#readme"
+}
