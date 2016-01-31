@@ -184,8 +184,8 @@
           "201": {
             "description": "user created!"
           },
-          "400": {
-            "description": "bad request!"
+          "409": {
+            "description": "User already exists"
           }
         }
       }

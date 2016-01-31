@@ -26,7 +26,8 @@
     "body-parser": "^1.14.2",
     "compression": "^1.6.1",
     "express": "^4.13.4",
-    "mongoose": "^4.3.7"
+    "mongoose": "^4.3.7",
+    "node-uuid": "^1.4.7"
   },
   "devDependencies": {
     "faker": "^3.0.1",
