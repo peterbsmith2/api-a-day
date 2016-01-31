@@ -307,9 +307,9 @@
     },
     "User": {
       "type": "object",
-      "required": ["id", "password"],
+      "required": ["_id", "password"],
       "properties": {
-        "id": {
+        "_id": {
           "type": "string"
         },
         "password": {
@@ -318,7 +318,7 @@
         }
       },
       "example": {
-        "id": "User_101",
+        "_id": "User_101",
         "password": "A_veryStr0ngPa$$word!"
       }
     },
