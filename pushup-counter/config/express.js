@@ -26,6 +26,7 @@ module.exports = function() {
 	// Load the routing files
 	require('../server/routes/types.server.routes.js')(app);
 	require('../server/routes/auth.server.routes.js')(app);
+	require('../server/routes/pushups.server.routes.js')(app);
 
 	// Return the App instance
 	return app;

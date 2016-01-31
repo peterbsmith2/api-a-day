@@ -9,4 +9,6 @@ module.exports = function(app) {
      .get(pushups.getPushup)
      .put(pushups.putPushup);
 
+  app.param('pushupId',pushups.pushupById);
+
 };
