@@ -53,7 +53,7 @@
             "api_key": []
           }
         ]
-      },
+      }
     },
     "/books/{{bookId}}": {
       "get": {
