@@ -21,8 +21,258 @@
     "application/json",
     "application/xml"
   ],
-  "paths": {},
-  "definitions": {},
-  "securityDefinitions": {},
-  "tags": [{}]
+  "paths": {
+    "/books": {
+      "post": {
+        "tags": ["books"],
+        "summary": "Create a new book.",
+        "operationId": "postBooks",
+        "parameters": [
+          {
+            "name": "book",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "book created!"
+          },
+          "400": {
+            "description": "required fields missing!"
+          },
+          "403": {
+            "description": "forbidden!"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+    },
+    "/books/{{bookId}}": {
+      "get": {
+        "tags": ["books"],
+        "summary": "Get book by ID.",
+        "operationId": "getBooksById",
+        "responses": {
+          "200": {
+            "description": "book got!",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          },
+          "403": {
+            "description": "forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": ["books"],
+        "summary": "Update book by ID",
+        "operationId": "putBooksById",
+        "parameters": [
+          {
+            "name": "book",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "book updated!"
+          },
+          "403": {
+            "description": "forbidden!"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["books"],
+        "summary": "Delete book by ID",
+        "operationId": "deleteBooksById",
+        "responses": {
+          "200": {
+            "description": "book deleted!"
+          },
+          "403": {
+            "description": "forbidden!"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "bookId",
+          "in": "path",
+          "description": "the id of book to get",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/users/{{userId}}": {
+      "get": {
+        "tags": ["users"],
+        "summary": "Get user by ID.",
+        "operationId": "getUsersById",
+        "responses": {
+          "200": {
+            "description": "got user!",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "403": {
+            "description": "forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "path",
+          "description": "the id of user to get",
+          "required": true,
+          "type": "string"
+        }
+      ]
+
+    },
+    "/register": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "create a new user",
+        "operationId": "newUser",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "new user to add to the system",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "user created!"
+          },
+          "409": {
+            "description": "User already exists"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "login as user",
+        "operationId": "loginUser",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "user to login to system",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "logged in!",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "403": {
+            "description": "Forbidden! Id/password incorrect!"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Book": {
+      "type": "object",
+      "required": ["title","author"],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "title": "The Da Vinci Code",
+        "author": "Dan Brown"
+      }
+    },
+    "User": {
+      "type": "object",
+      "required": ["_id", "password"],
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string",
+          "format": "password"
+        }
+      },
+      "example": {
+        "_id": "User_101",
+        "password": "A_veryStr0ngPa$$word!"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "query"
+    }
+  },
+  "tags": [
+    {
+      "name": "api"
+    },
+    {
+      "name": "api-a-day"
+    },
+    {
+      "name": "peterbsmith"
+    }
+  ]
 }
