@@ -22,7 +22,8 @@
     "compression": "^1.6.1",
     "express": "^4.13.4",
     "mongoose": "^4.4.2",
-    "node-uuid": "^1.4.7"
+    "node-uuid": "^1.4.7",
+    "swagger-tools": "^0.9.14"
   },
   "devDependencies": {
     "faker": "^3.0.1",
