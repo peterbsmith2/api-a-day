@@ -1,0 +1,33 @@
+{
+  "name": "books-list",
+  "version": "1.0.0",
+  "description": "A list of books the user has read and books they want to read in the future",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterbsmith2/api-a-day.git"
+  },
+  "author": "Peter B Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peterbsmith2/api-a-day/issues"
+  },
+  "homepage": "https://github.com/peterbsmith2/api-a-day#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.2",
+    "compression": "^1.6.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.2",
+    "node-uuid": "^1.4.7"
+  },
+  "devDependencies": {
+    "faker": "^3.0.1",
+    "morgan": "^1.6.1",
+    "should": "^8.2.1",
+    "supertest": "^1.1.0"
+  }
+}
