@@ -216,7 +216,7 @@
             }
           },
           "403": {
-            "description": "Forbidden! Id/password incorrect!"
+            "description": "Forbidden!"
           }
         }
       }
@@ -225,12 +225,19 @@
   "definitions": {
     "Book": {
       "type": "object",
-      "required": ["title","author"],
+      "required": ["title","author","created_date","user_id"],
       "properties": {
         "title": {
           "type": "string"
         },
         "author": {
+          "type": "string"
+        },
+        "created_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "user_id": {
           "type": "string"
         }
       },
@@ -241,7 +248,7 @@
     },
     "User": {
       "type": "object",
-      "required": ["_id", "password"],
+      "required": ["_id", "password", "api_key"],
       "properties": {
         "_id": {
           "type": "string"
@@ -249,6 +256,9 @@
         "password": {
           "type": "string",
           "format": "password"
+        },
+        "api_key": {
+          "type": "string"
         }
       },
       "example": {
