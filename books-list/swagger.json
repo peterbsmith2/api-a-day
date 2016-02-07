@@ -55,7 +55,7 @@
         ]
       }
     },
-    "/books/{{bookId}}": {
+    "/books/{bookId}": {
       "get": {
         "tags": ["books"],
         "summary": "Get book by ID.",
@@ -133,7 +133,7 @@
         }
       ]
     },
-    "/users/{{userId}}": {
+    "/users/{userId}": {
       "get": {
         "tags": ["users"],
         "summary": "Get user by ID.",
