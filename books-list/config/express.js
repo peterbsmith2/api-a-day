@@ -3,6 +3,8 @@ var bodyParser  = require('body-parser');
 var compression = require('compression');
 var express     = require('express');
 var morgan      = require('morgan');
+var swagger     = require('swagger-tools').initializeMiddleware;
+var swaggerDoc  = require('../swagger.json');
 
 //Define the Express configuration method
 module.exports = function() {
@@ -18,9 +20,19 @@ module.exports = function() {
   }
 
   // use body-parser middleware
+  app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: true
   }));
+
+  swagger(swaggerDoc, function(middleware) {
+    app.use(middleware.swaggerMetadata());
+
+    // Load routing files
+    require('../server/routes/auth.server.routes')(app);
+    require('../server/routes/books.server.routes')(app);
+    // require('../server/routes/users.server.routes')(app);
+  });
 
   // Load routing files
   // require('../server/routes/books.server.routes')(app);
