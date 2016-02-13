@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Owner     = mongoose.model('Owner');
+var Shoveler     = mongoose.model('Shoveler');
 
 exports.ownerSignup = function(req, res) {
 
@@ -12,9 +13,12 @@ exports.ownerSignup = function(req, res) {
 
 
   // save the owner
-  newOwner.save(function(err) {
+  newOwner.save(function(err, owner) {
       if (err) throw err;
-      res.status(201).send({ 'description': 'owner created'});
+      res.status(201).send({
+        'description': 'owner created',
+        'owner': owner
+      });
   });
 };
 
@@ -28,8 +32,11 @@ exports.shovelerSignup = function(req, res) {
 
 
   // save the shoveler
-  newShoveler.save(function(err) {
+  newShoveler.save(function(err, shoveler) {
       if (err) throw err;
-      res.status(201).send({ 'description': 'shoveler created'});
+      res.status(201).send({
+        'description': 'shoveler created',
+        'shoveler': shoveler
+      });
   });
 };

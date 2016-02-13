@@ -102,7 +102,7 @@
           "201": {
             "description": "confirmation that a shoveler is created",
             "schema": {
-              "$ref": "#/defintions/Shoveler"
+              "$ref": "#/definitions/Shoveler"
             }
           },
           "400": {
@@ -130,7 +130,7 @@
           "201": {
             "description": "confirmation that a owner is created",
             "schema": {
-              "$ref": "#/defintions/Owner"
+              "$ref": "#/definitions/Owner"
             }
           },
           "400": {
