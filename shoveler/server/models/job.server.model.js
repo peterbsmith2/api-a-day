@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 // Define new JobSchema
 
 var JobSchema = new Schema({
-  owner_id: {
+  owner: {
     type: String,
     required: true,
     ref: 'Owner'
@@ -22,7 +22,7 @@ var JobSchema = new Schema({
     required: true,
     default: false
   },
-  shoveler_id: {
+  shoveler: {
     type: String,
     ref: 'Shoveler'
   },

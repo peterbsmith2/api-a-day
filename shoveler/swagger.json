@@ -174,6 +174,30 @@
         }
       }
     },
+    "Job": {
+      "type": "object",
+      "required": ["price", "size", "notes"],
+      "properties": {
+        "price": {"type": "number"},
+        "notes": {"type": "string"},
+        "size": {"type": "string"},
+        "has_shoveler": {"type": "boolean"}
+      }
+    },
+    "JobRequest": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Job"
+        },
+        {
+          "type": "object",
+          "required": ["owner"],
+          "properties": {
+            "owner": {"type": "string"}
+          }
+        }
+      ]
+    },
     "JobResponse": {
       "allOf": [
         {
@@ -185,22 +209,13 @@
           "properties": {
             "owner": {
               "$ref": "#/definitions/Owner"
+            },
+            "shoveler": {
+              "$ref": "#/definitions/Shoveler"
             }
           }
         }
       ]
-    },
-    "Job": {
-      "type": "object",
-      "required": ["owner_id", "price", "size", "notes"],
-      "properties": {
-        "price": {"type": "number"},
-        "notes": {"type": "string"},
-        "owner_id": {"type": "string"},
-        "size": {"type": "string"},
-        "has_shoveler": {"type": "boolean"},
-        "shoveler_id": {"type": "string"}
-      }
     }
   },
   "securityDefinitions": {
