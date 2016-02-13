@@ -26,7 +26,7 @@
       "post": {
         "tags": ["jobs"],
         "summary": "adds a job",
-        "operationId": "postJob",
+        "operationId": "postJobs",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -170,7 +170,7 @@
         "notes": {"type": "string"},
         "owner_id": {"type": "string"},
         "size": {"type": "string"},
-        "hasShoveler": {"type": "boolean"},
+        "has_shoveler": {"type": "boolean"},
         "shoveler_id": {"type": "string"}
       }
     }
