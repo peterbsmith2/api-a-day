@@ -75,7 +75,13 @@
         "operationId": "getJobs",
         "responses": {
           "200": {
-            "description": "shows all jobs"
+            "description": "shows all jobs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/JobResponse"
+              }
+            }
           },
           "400": {
             "description": "unexpected error"
@@ -167,6 +173,22 @@
           "type": "number"
         }
       }
+    },
+    "JobResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Job"
+        },
+        {
+          "type": "object",
+          "required": ["owner"],
+          "properties": {
+            "owner": {
+              "$ref": "#/definitions/Owner"
+            }
+          }
+        }
+      ]
     },
     "Job": {
       "type": "object",
