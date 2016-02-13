@@ -100,7 +100,10 @@
         ],
         "responses": {
           "201": {
-            "description": "confirmation that a shoveler is created"
+            "description": "confirmation that a shoveler is created",
+            "schema": {
+              "$ref": "#/defintions/Shoveler"
+            }
           },
           "400": {
             "description": "unexpected error"
@@ -125,7 +128,10 @@
         ],
         "responses": {
           "201": {
-            "description": "confirmation that a owner is created"
+            "description": "confirmation that a owner is created",
+            "schema": {
+              "$ref": "#/defintions/Owner"
+            }
           },
           "400": {
             "description": "unexpected error"
