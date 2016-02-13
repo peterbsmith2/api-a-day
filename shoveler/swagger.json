@@ -137,12 +137,15 @@
   "definitions": {
     "Owner": {
       "type": "object",
-      "required": ["name", "address"],
+      "required": ["name", "address","phone"],
       "properties": {
         "name": {
           "type": "string"
         },
         "address": {
+          "type": "string"
+        },
+        "phone": {
           "type": "string"
         }
       }
