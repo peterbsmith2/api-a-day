@@ -1,0 +1,188 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Pushup Counter API",
+    "description": "A Simple API for counting pushups. No frills, all strength.",
+    "contact": {
+      "name": "Peter B Smith",
+      "url": "http://twitter.com/peterbsmith",
+      "email": "peterbutlersmith@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0"
+  },
+  "host": "localhost",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "paths": {
+    "/jobs":{
+      "post": {
+        "tags": ["jobs"],
+        "summary": "adds a job",
+        "operationId": "postJob",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "price of the job",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "notes",
+            "in": "formData",
+            "description": "additional notes from the owner",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "formData",
+            "description": "size of the owners driveway",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner_id",
+            "in": "formData",
+            "description": "id of driveway owner",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "job is added"
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["jobs"],
+        "summary": "gets all the jobs",
+        "operationId": "getJobs",
+        "responses": {
+          "200": {
+            "description": "shows all jobs"
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    },
+    "/signup/shoveler": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "signs up a shoveler",
+        "operationId": "shovelerSignup",
+        "parameters": [
+          {
+            "name": "shoveler",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Shoveler"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "confirmation that a shoveler is created"
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    },
+    "/signup/owner": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "signs up a owner",
+        "operationId": "ownerSignup",
+        "parameters": [
+          {
+            "name": "owner",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Owner"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "confirmation that a owner is created"
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Owner": {
+      "type": "object",
+      "required": ["name", "address"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "Shoveler": {
+      "type": "object",
+      "required": ["name", "age"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "number"
+        }
+      }
+    },
+    "Job": {
+      "type": "object",
+      "required": ["owner_id", "price", "size", "notes"],
+      "properties": {
+        "price": {"type": "number"},
+        "notes": {"type": "string"},
+        "owner_id": {"type": "string"},
+        "size": {"type": "string"},
+        "hasShoveler": {"type": "boolean"},
+        "shoveler_id": {"type": "string"}
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic"
+    }
+  },
+  "tags": [
+    {
+      "name": "api"
+    },
+    {
+      "name": "peterbsmith"
+    }
+  ]
+}
