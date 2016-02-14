@@ -43,13 +43,38 @@ exports.getJobs = function(req, res) {
 };
 
 exports.getOneJob = function(req, res) {
-  Job.find({_id: req.params.jobId},function(err,job){
+  Job.findOne({_id: req.params.jobId})
+  .populate('owner')
+  .exec(function(err,job){
     if(err) {
       return res.status(400).send({
         'description': 'unexpected error'
       });
     } else {
       res.status(200).send(job);
+    }
+  });
+};
+
+exports.jobShovelerAccept = function(req, res){
+  Job.findOne({_id: req.params.jobId})
+  .exec(function(err, job){
+    if(err) {
+      return res.status(400).send({
+        'description': 'unexpected error'
+      });
+    } else {
+      job.has_shoveler = true;
+      job.shoveler = req.body.shovelerId;
+      job.save(function(err){
+        if(err) {
+          return res.status(400).send({
+            'description': 'unexpected error'
+          });
+        } else {
+          res.status(201).send();
+        }
+      });
     }
   });
 };

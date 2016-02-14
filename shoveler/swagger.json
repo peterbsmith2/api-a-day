@@ -113,6 +113,36 @@
         }
       }
     },
+    "/jobs/accept/{jobId}": {
+      "post": {
+        "tags": ["jobs"],
+        "summary": "a shoveler accepts a job",
+        "operationId": "jobShovelerAccept",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "id of job",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "shovelerId",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "shoveler accepted"
+          },
+          "400": {
+            "description": "unknown error"
+          }
+        }
+      }
+    },
     "/signup/shoveler": {
       "post": {
         "tags": ["auth"],

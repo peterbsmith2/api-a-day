@@ -9,4 +9,7 @@ module.exports = function(app) {
   app.route('/api/jobs/:jobId')
      .get(jobs.getOneJob);
 
+  app.route('/api/jobs/accept/:jobId')
+     .post(jobs.jobShovelerAccept);
+
 };
