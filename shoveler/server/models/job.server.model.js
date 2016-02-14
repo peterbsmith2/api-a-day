@@ -17,6 +17,10 @@ var JobSchema = new Schema({
     type: Number,
     required: true
   },
+  size: {
+    type: String,
+    required: true
+  },
   has_shoveler: {
     type: Boolean,
     required: true,
