@@ -41,3 +41,15 @@ exports.getJobs = function(req, res) {
   });
 
 };
+
+exports.getOneJob = function(req, res) {
+  Job.find({_id: req.params.jobId},function(err,job){
+    if(err) {
+      return res.status(400).send({
+        'description': 'unexpected error'
+      });
+    } else {
+      res.status(200).send(job);
+    }
+  });
+};

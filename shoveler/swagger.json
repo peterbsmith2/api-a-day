@@ -89,6 +89,30 @@
         }
       }
     },
+    "/jobs/{jobId}": {
+      "get": {
+        "tags": ["jobs"],
+        "summary": "gets a single Job",
+        "operationId": "getOneJob",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "id of job record",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "gets one job"
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    },
     "/signup/shoveler": {
       "post": {
         "tags": ["auth"],
