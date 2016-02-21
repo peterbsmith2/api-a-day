@@ -43,6 +43,9 @@
           },
           "400": {
             "description": "unexpected error"
+          },
+          "409": {
+            "description": "user already exists"
           }
         }
       }
@@ -69,6 +72,9 @@
             "schema": {
               "$ref": "#/definitions/User"
             }
+          },
+          "401": {
+            "description": "unauthorized"
           }
         }
       }
