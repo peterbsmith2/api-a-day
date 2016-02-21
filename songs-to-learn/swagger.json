@@ -45,7 +45,10 @@
             "description": "unexpected error"
           },
           "409": {
-            "description": "user already exists"
+            "description": "user already exists",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -74,7 +77,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -238,6 +244,13 @@
         "title": {"type": "string"},
         "artist": {"type": "string"},
         "geniusUrl": {"type": "string"}
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": ["message"],
+      "properties": {
+        "message": {"type": "string"}
       }
     },
     "User": {

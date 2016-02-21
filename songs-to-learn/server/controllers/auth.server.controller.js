@@ -22,7 +22,7 @@ exports.userSignup = function(req, res) {
       // save the user
       newUser.save(function(err) {
           if (err) throw err;
-          res.status(201).send();
+          res.status(201).json();
       });
     }
   });

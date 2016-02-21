@@ -27,6 +27,9 @@ module.exports = function() {
 
   swagger(swaggerDoc, function(middleware) {
     app.use(middleware.swaggerMetadata());
+    app.use(middleware.swaggerValidator({
+      validateResponse: true
+    }));
 
     // Load routing files
     require('../server/routes/songs.server.routes')(app);
