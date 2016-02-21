@@ -1,0 +1,40 @@
+{
+  "name": "songs-to-learn",
+  "version": "1.0.0",
+  "description": "API for Songs for which to Learn the Lyrics ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterbsmith2/api-a-day.git"
+  },
+  "keywords": [
+    "api-a-day",
+    "api",
+    "swagger",
+    "http",
+    "swagger-tools",
+    "fun",
+    "practice"
+  ],
+  "author": "Peter B Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peterbsmith2/api-a-day/issues"
+  },
+  "homepage": "https://github.com/peterbsmith2/api-a-day#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "compression": "^1.6.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.4"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "morgan": "^1.7.0",
+    "should": "^8.2.2",
+    "supertest": "^1.2.0"
+  }
+}
