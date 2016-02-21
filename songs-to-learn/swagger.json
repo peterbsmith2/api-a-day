@@ -1,0 +1,268 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Songs-To-Learn API",
+    "description": "API for Songs for which to Learn the Lyrics.",
+    "contact": {
+      "name": "Peter B Smith",
+      "url": "http://twitter.com/peterbsmith",
+      "email": "peterbutlersmith@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0"
+  },
+  "host": "localhost",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "signs up a user",
+        "operationId": "userSignup",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "confirmation that a user is created"
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "login as user",
+        "operationId": "userLogin",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "user to login to system",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "logged in!",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/songs": {
+      "post": {
+        "tags": ["songs"],
+        "summary": "adds a song",
+        "operationId": "postSongs",
+        "parameters": [
+          {
+            "name": "song",
+            "in": "body",
+            "description": "song record",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SongRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "pushups added!"
+          },
+          "403": {
+            "description": "forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "get": {
+        "tags": ["songs"],
+        "summary": "gets all the songs",
+        "operationId": "getSongs",
+        "responses": {
+          "200": {
+            "description": "shows all songs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SongResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/songs/{songId}": {
+      "get": {
+        "tags": ["songs"],
+        "summary": "gets a song",
+        "operationId": "getOneSong",
+        "responses": {
+          "200": {
+            "description": "gets one song"
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "put": {
+        "tags": ["songs"],
+        "summary": "updates a song",
+        "operationId": "putOneSong",
+        "responses": {
+          "200": {
+            "description": "updates one song"
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["songs"],
+        "summary": "deletes a song",
+        "operationId": "deleteOneSong",
+        "responses": {
+          "204": {
+            "description": "deletes one song"
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "songId",
+          "in": "path",
+          "description": "id of song record",
+          "required": true,
+          "type": "number"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "SongRequest": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Song"
+        },
+        {
+          "type": "object",
+          "required": ["user"],
+          "properties": {
+            "user": {"type": "string"}
+          }
+        }
+      ]
+    },
+    "SongResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Song"
+        },
+        {
+          "type": "object",
+          "required": ["user"],
+          "properties": {
+            "user": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      ]
+    },
+    "Song": {
+      "type": "object",
+      "required": ["title", "artist", "geniusUrl"],
+      "properties": {
+        "title": {"type": "string"},
+        "artist": {"type": "string"},
+        "geniusUrl": {"type": "string"}
+      }
+    },
+    "User": {
+      "type": "object",
+      "required": ["_id", "password"],
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string",
+          "format": "password"
+        }
+      },
+      "example": {
+        "_id": "User_101",
+        "password": "A_veryStr0ngPa$$word!"
+      }
+    },
+  },
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic"
+    }
+  },
+  "tags": [
+    {
+      "name": "api"
+    },
+    {
+      "name": "peterbsmith"
+    }
+  ]
+}
