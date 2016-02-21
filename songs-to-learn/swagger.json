@@ -256,7 +256,7 @@
         "_id": "User_101",
         "password": "A_veryStr0ngPa$$word!"
       }
-    },
+    }
   },
   "securityDefinitions": {
     "basic": {
